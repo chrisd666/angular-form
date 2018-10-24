@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="title">
+      <h2>Form</h2>
+    </div>
+    <form #frm="ngForm">
+      <div class="input-field">
+        <input ngModel name="fname" #usrFName="ngModel" id="fname"
+          class="validate"
+          type="text" required pattern="[a-zA-Z][a-zA-Z]+">
+        <label for="fname">First Name:</label>
+        <div *ngIf="usrFName.touched">
+          <div *ngIf="usrFName.errors?.required">
+            First Name is required
+          </div>
+          <div *ngIf="usrFName.errors?.pattern">
+            Please enter only letters
+          </div>
+        </div>
+      </div>
+      <div class="input-field">
+        <input ngModel name="lname" #usrLName="ngModel" id="lname"
+          class="validate" type="text"
+          required pattern="[a-zA-Z][a-zA-Z]+">
+        <label for="lname">Last Name:</label>
+        <div *ngIf="usrLName.touched">
+          <div *ngIf="usrLName.errors?.required">
+            Last Name is required
+          </div>
+          <div *ngIf="usrLName.errors?.pattern">
+            Please enter only letters
+          </div>
+        </div>
+      </div>
+      <div class="input-field" id="newNo">
+        <input ngModel name="phone" #usrPhone="ngModel" id="phone"
+          class="validate"
+          type="text" required pattern="[0-9]*">
+        <label for="phone">Phone No:</label>
+        <div *ngIf="usrPhone.touched">
+          <div *ngIf="usrPhone.errors?.required">
+            Phone No. is required
+          </div>
+          <div *ngIf="usrPhone.errors?.pattern">
+            Please enter only numbers
+          </div>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="button"
+        (click)="addNo($event)"
+        id="addNo" [disabled]="usrPhone.invalid">Add
+        No.</button>
+      <div class="input-field">
+        <input ngModel name="email" #usrEmail="ngModel" id="email"
+          class="validate"
+          type="text" required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$">
+        <label for="email">Email:</label>
+        <div *ngIf="usrEmail.touched">
+          <div *ngIf="usrEmail.errors?.required">
+            Email is required
+          </div>
+          <div *ngIf="usrEmail.errors?.pattern">
+            Please enter a valid Email
+          </div>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action"
+        [disabled]="frm.invalid">Submit</button>
+    </form>
+  </div>
+</div>
